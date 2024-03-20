@@ -1,0 +1,14 @@
+{
+  "description": "",
+  "root": "webShare",
+  "actions": {
+    "webShare": {
+      "module": "vb/action/builtin/webShareAction",
+      "parameters": {
+        "title": "Looking for me?",
+        "text": "[[ $page.variables.location ]]"
+      }
+    }
+  },
+  "variables": {}
+}

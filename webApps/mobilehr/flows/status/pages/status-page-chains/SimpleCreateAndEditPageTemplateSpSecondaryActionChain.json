@@ -1,0 +1,24 @@
+{
+  "description": "",
+  "root": "navigateToFirstSearch",
+  "actions": {
+    "navigateToFirstSearch": {
+      "module": "vb/action/builtin/navigateAction",
+      "@dt": {
+        "targetType": "flow"
+      },
+      "parameters": {
+        "target": "parent",
+        "flow": "first",
+        "page": "search"
+      }
+    }
+  },
+  "variables": {
+    "actionId": {
+      "required": true,
+      "type": "string",
+      "input": "fromCaller"
+    }
+  }
+}

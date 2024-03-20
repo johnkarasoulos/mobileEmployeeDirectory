@@ -1,0 +1,22 @@
+{
+  "root": "navigateToEdit",
+  "variables": {
+    "employeesId": {
+      "type": "string",
+      "input": "fromCaller",
+      "required": true
+    }
+  },
+  "actions": {
+    "navigateToEdit": {
+      "module": "vb/action/builtin/navigateAction",
+      "parameters": {
+        "page": "first-edit-employees",
+        "params": {
+          "employeesId": "[[ $variables.employeesId ]]",
+          "objectId": "{{ $variables.employeesId }}"
+        }
+      }
+    }
+  }
+}

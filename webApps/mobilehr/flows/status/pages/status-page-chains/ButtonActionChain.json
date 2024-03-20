@@ -1,0 +1,34 @@
+{
+  "description": "",
+  "root": "geolocation",
+  "actions": {
+    "geolocation": {
+      "module": "vb/action/builtin/geolocationAction",
+      "parameters": {
+        "timeout": 10000
+      },
+      "outcomes": {
+        "failure": "fireNotification",
+        "success": "assignVariablesLocation"
+      }
+    },
+    "fireNotification": {
+      "module": "vb/action/builtin/fireNotificationEventAction",
+      "parameters": {
+        "target": "leaf",
+        "summary": "[[ $chain.results.geolocation.message.summary ]]",
+        "type": "error",
+        "displayMode": "persist"
+      }
+    },
+    "assignVariablesLocation": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "parameters": {
+        "$page.variables.location": {
+          "source": "{{ \"I'm at \" +$chain.results.geolocation.coords.latitude + \" and \" +$chain.results.geolocation.coords.longitude }}"
+        }
+      }
+    }
+  },
+  "variables": {}
+}

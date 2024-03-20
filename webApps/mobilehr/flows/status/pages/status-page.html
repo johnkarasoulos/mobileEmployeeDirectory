@@ -1,0 +1,23 @@
+<div class="oj-flex">
+  <oj-sp-simple-create-edit class="oj-flex-item oj-sm-12 oj-md-12" page-title="Update My Status"
+    page-subtitle="Let us know what's new" display-mode="mixed"
+    on-sp-primary-action="[[$listeners.simpleCreateAndEditPageTemplateSpPrimaryAction]]"
+    on-sp-secondary-action="[[$listeners.simpleCreateAndEditPageTemplateSpSecondaryAction]]"
+    on-sp-cancel="[[$listeners.simpleCreateAndEditPageTemplateSpCancel]]">
+    <oj-avatar class="oj-flex-item oj-sm-flex-initial" slot="main" size="xl" background="teal"
+      src="[[ $variables.emppic ]]"></oj-avatar>
+    <oj-form-layout slot="main">
+      <oj-file-picker capture="user" accept='["image/*"]' class='oj-filepicker-custom'
+        on-oj-select="[[$listeners.cameraFilePickerSelect]]">
+        <oj-button slot='trigger' chroming='outlined' label="Update your Photo">
+          <span class="oj-ux-ico-file-image" slot="startIcon"></span>
+        </oj-button>
+      </oj-file-picker>
+      <oj-button label="Tell us where you are" chroming="callToAction" on-oj-action="[[$listeners.buttonAction]]">
+        <span class="oj-ux-ico-location-pin" slot="endIcon"></span>
+      </oj-button>
+      <oj-input-text label-hint="Location" readonly="true" value="{{ $variables.location }}"></oj-input-text>
+      <oj-button label="Share" on-oj-action="[[$listeners.buttonAction2]]"></oj-button>
+    </oj-form-layout>
+  </oj-sp-simple-create-edit>
+</div>

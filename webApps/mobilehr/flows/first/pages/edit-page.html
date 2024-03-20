@@ -1,0 +1,31 @@
+<div class="oj-flex">
+  <div class="oj-flex-item oj-sm-12 oj-md-12">
+    <oj-sp-simple-create-edit id="oj_ssce1" 
+    page-title="Edit Employee"
+    page-subtitle="Update Salary Gauge"
+      avatar="{{$page.variables.avatar}}"
+      primary-action.disabled="{{!($page.variables.primaryAlwaysOn || ($page.variables.dirtyDataFlag ? true : $page.variables.isSaved))}}"
+      display-options.save="{{$page.variables.saveOption!=='off'?$page.variables.dirtyDataFlag?'on':'disabled':'off'}}"
+      display-options.go-to-parent="{{$page.variables.goToParentOption }}"
+      contextual-info-sticky="{{ $page.variables.contextualInfoSticky }}"
+      display-options.contextual-info-label="{{$page.variables.contextualInfoLabelVisible}}"
+      display-mode="[[$page.variables.displayMode]]" on-sp-cancel="[[$listeners.ojSpCancel]]"
+      on-sp-save="[[$listeners.ojSpSave]]" on-sp-go-to-parent="[[$listeners.ojSpGoToParent]]"
+      on-sp-primary-action="[[$listeners.ojSpSubmit]]" on-sp-feedback-action="[[$listeners.onSpFeedbackAction]]">
+      <div slot="main">
+        <oj-bind-if test="[[ ($variables.objectId) !== undefined ]]">
+          <oj-validation-group id="employees-validation-group--873210827-1">
+            <oj-dynamic-form valid="{{$page.variables.formState}}"
+              on-transient-value-changed="[[$listeners.ojdynamicFormTransientValueChangeChain]]"
+              metadata="[[ $metadata.businessObjectsUpdateEmployeesMetadata.provider ]]" layout="editEmp"
+              value="{{ $variables.employees }}" value-loading="[[ $variables.employeesEditFormLoadingStatus ]]"
+              rendered-fields="{{ $variables.employeesEditFormRenderedFields }}" id="oj-dynamic-form--873210827-1"></oj-dynamic-form>
+          </oj-validation-group>
+        </oj-bind-if>
+      </div>
+    </oj-sp-simple-create-edit>
+    <oj-sp-message-unsaved-changes id="dirtyDataWarningDialog"
+      on-oj-sp-discard-changes="[[ $listeners.confirmYesOjAction ]]"
+      on-oj-sp-cancel="[[ $listeners.confirmNoOjAction ]]"></oj-sp-message-unsaved-changes>
+  </div>
+</div>

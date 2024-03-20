@@ -1,0 +1,22 @@
+{
+  "component-dependencies": {
+    "oj-sp": {
+      "version": "2207.0.0",
+      "components": {
+
+        "select-single-item-template": "2207.0.0",
+        "welcome-page": "2207.0.0",
+        "simple-create-edit-pattern": "2207.0.0",
+        "simple-create-edit": "2207.0.0"
+      }
+    },
+    "oj-dynamic": {
+      "version": "12.1.4",
+      "components": {
+        "container": "12.1.4",
+        "form": "12.1.4",
+        "table": "12.1.4"
+      }
+    }
+  }
+}

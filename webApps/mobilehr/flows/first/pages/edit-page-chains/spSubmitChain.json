@@ -1,0 +1,46 @@
+{
+  "description": "Notify primary action is triggered",
+  "variables": {
+    "detail": {
+      "type": "any",
+      "input": "fromCaller",
+      "required": true
+    }
+  },
+  "root": "callSaveChain",
+  "actions": {
+    "callSaveChain": {
+      "module": "vb/action/builtin/callChainAction",
+      "parameters": {
+        "id": "spSaveChain"
+      },
+      "outcomes": {
+        "success": "checkIfNeedFeedbackAction"
+      }
+    },
+    "checkIfNeedFeedbackAction": {
+      "module": "vb/action/builtin/ifAction",
+      "parameters": {
+        "condition": "{{ $chain.variables.detail.feedbackEnabled}}"
+      },
+      "outcomes": {
+        "true": "openFeedback",
+        "false": "navigateToSearch"
+      }
+    },
+    "openFeedback": {
+      "module": "vb/action/builtin/callComponentMethodAction",
+      "parameters": {
+        "component": "{{ $page.components.byId('oj_ssce1') }}",
+        "method": "openFeedback",
+        "params": []
+      }
+    },
+    "navigateToSearch": {
+      "module": "vb/action/builtin/navigateAction",
+      "parameters": {
+        "page": "search"
+      }
+    }
+  }
+}

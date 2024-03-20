@@ -1,0 +1,14 @@
+<!-- Contains Dynamic UI layout templates -->
+<template id="salgauge">
+  <oj-input-text value="{{ $value }}" label-hint="[[ $metadata.labelHint ]]"></oj-input-text>
+  <oj-status-meter-gauge value="{{ $value }}" orientation="circular" metric-label.rendered="on" plot-area.rendered="on"
+    class="oj-sm-flex-initial" style="max-width:100%;" max="10000" step="500"
+    thresholds='[{"max":2000, "color":"red"}, {"max":5000, "color":"yellow"},{"max":10000, "color":"green"}]'
+    animation-on-data-change="auto" animation-on-display="auto" color="#0000FF"></oj-status-meter-gauge>
+</template>
+
+<template id="email">
+  <oj-input-text value="{{ $value }}" label-hint="[[ $metadata.labelHint ]]">
+    <span class="oj-ux-ico-email" slot="end" on-click="[[$listeners.iconClick]]"></span>
+  </oj-input-text>
+</template>

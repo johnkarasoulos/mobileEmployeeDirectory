@@ -1,0 +1,195 @@
+{
+  "root": "setPendingFormStatus",
+  "description": "Saves Employees record data",
+  "variables": {
+    "saveHeaders": {
+      "type": "object"
+    },
+    "saveFailureResult": {
+      "type": "businessObjectsServiceErrorResponseType"
+    },
+    "errorMessage": {
+      "type": "string"
+    },
+    "employees": {
+      "type": "updateEmployeesRequest",
+      "defaultValue": "[[ $page.variables.employees ]]",
+      "input": "fromCaller"
+    },
+    "employeesETag": {
+      "type": "string",
+      "defaultValue": "[[ $page.variables.employeesETag ]]"
+    },
+    "employeesId": {
+      "type": "string",
+      "input": "fromCaller"
+    }
+  },
+  "actions": {
+    "setPendingFormStatus": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "parameters": {
+        "$page.variables.employeesEditFormLoadingStatus": {
+          "source": "pending"
+        }
+      },
+      "outcomes": {
+        "success": "validateEmployees"
+      },
+      "description": "Updates form status to Pending.",
+      "label": "Set Form status to Pending"
+    },
+    "validateEmployees": {
+      "module": "vb/action/builtin/callChainAction",
+      "parameters": {
+        "id": "flow:validateFormChain",
+        "params": {
+          "validationGroupId": "employees-validation-group--873210827-1"
+        }
+      },
+      "outcomes": {
+        "success": "isFormValid"
+      },
+      "label": "Validate",
+      "description": "Validates Employees form"
+    },
+    "isFormValid": {
+      "module": "vb/action/builtin/ifAction",
+      "parameters": {
+        "condition": "[[ $chain.results.validateEmployees === true ]]"
+      },
+      "outcomes": {
+        "true": "checkETag",
+        "false": "setReadyFormStatus"
+      },
+      "label": "Is Form valid",
+      "description": "Tests if form passed validation"
+    },
+    "checkETag": {
+      "module": "vb/action/builtin/ifAction",
+      "parameters": {
+        "condition": "[[ $variables.employeesETag ]]"
+      },
+      "outcomes": {
+        "true": "assignIfMatchHeader",
+        "false": "fireSuccessNotification"
+      },
+      "description": "Tests if ETag is present and needs to be sent",
+      "label": "Test ETag"
+    },
+    "assignIfMatchHeader": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "parameters": {
+        "$variables.saveHeaders": {
+          "source": "[[ { 'If-Match': $variables.employeesETag } ]]"
+        }
+      },
+      "outcomes": {
+        "success": "fireSuccessNotification"
+      },
+      "description": "Assigns fetched ETag to request headers",
+      "label": "Assign If-Match header"
+    },
+    "fireSuccessNotification": {
+      "module": "vb/action/builtin/fireNotificationEventAction",
+      "parameters": {
+        "summary": "Employees saved",
+        "message": "Employees record successfully updated",
+        "type": "confirmation",
+        "displayMode": "transient"
+      },
+      "outcomes": {
+        "success": "callLoadEmployeesChain"
+      },
+      "description": "Fires a notification event about successful save",
+      "label": "Fire successful save notification event"
+    },
+    "assignFailureResult": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "parameters": {
+        "$variables.saveFailureResult": {
+          "source": "[[ $chain.results.saveEmployees ]]"
+        }
+      },
+      "outcomes": {
+        "success": "testFailureDetails"
+      },
+      "description": "Assigns REST call failure result to a local variable",
+      "label": "Assign failure result"
+    },
+    "testFailureDetails": {
+      "module": "vb/action/builtin/ifAction",
+      "outcomes": {
+        "true": "handleDetailedErrorMessage",
+        "false": "handleDefaultErrorMessage"
+      },
+      "parameters": {
+        "condition": "[[ $variables.saveFailureResult.body['o:errorDetails'][0] ]]"
+      },
+      "description": "Tests if the REST call failure output contains error detail message",
+      "label": "Test failure details"
+    },
+    "handleDetailedErrorMessage": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "outcomes": {
+        "success": "fireErrorNotification"
+      },
+      "parameters": {
+        "$variables.errorMessage": {
+          "source": "[[ $variables.saveFailureResult.body['o:errorDetails'][0].detail ]]"
+        }
+      },
+      "description": "Extracts detail error message from the REST call failure result",
+      "label": "Assign detailed error message"
+    },
+    "handleDefaultErrorMessage": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "outcomes": {
+        "success": "fireErrorNotification"
+      },
+      "parameters": {
+        "$variables.errorMessage": {
+          "source": "[[ 'Could not create new Employees: status ' + $variables.saveFailureResult.status ]]"
+        }
+      },
+      "description": "Builds default error message",
+      "label": "Assign default error message"
+    },
+    "fireErrorNotification": {
+      "module": "vb/action/builtin/fireNotificationEventAction",
+      "parameters": {
+        "summary": "Save failed",
+        "message": "[[ $variables.errorMessage ]]",
+        "type": "error",
+        "displayMode": "persist"
+      },
+      "description": "Fires a notification event about failed save",
+      "label": "Fire save failed event"
+    },
+    "setReadyFormStatus": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "parameters": {
+        "$page.variables.employeesEditFormLoadingStatus": {
+          "source": "ready"
+        }
+      },
+      "description": "Updates form status to Ready.",
+      "label": "Set Form status to Ready"
+    },
+    "callLoadEmployeesChain": {
+      "module": "vb/action/builtin/callChainAction",
+      "parameters": {
+        "id": "loadEmployeesChain",
+        "params": {
+          "fetchedFields": "[[ $page.variables.employeesEditFormRenderedFields ]]",
+          "employeesId": "{{ $page.variables.objectId }}"
+        }
+      },
+      "description": "Calls action chain re-loading Employees data",
+      "label": "Reload Employees data",
+      "outcomes": {
+        "success": "setReadyFormStatus"
+      }
+    }
+  }
+}

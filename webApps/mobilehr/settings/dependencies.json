@@ -1,0 +1,17 @@
+{
+  "component-dependencies": {
+    "oj-sp": {
+      "version": "2207.0.0",
+      "components": {
+        "welcome-page": "2207.0.0",
+        "simple-create-edit": "2207.0.0"
+      }
+    },
+    "oj-dynamic": {
+      "version": "12.1.4",
+      "components": {
+        "form": "12.1.4"
+      }
+    }
+  }
+ }

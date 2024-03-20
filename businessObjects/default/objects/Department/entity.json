@@ -1,0 +1,66 @@
+{
+    "displayLabel": "Department",
+    "fields": [
+        {
+            "displayLabel": "Id",
+            "key": true,
+            "name": "id",
+            "oid": "21c83a8a-5b35-47db-87bc-9ef715b3e542",
+            "required": true,
+            "type": "number",
+            "unique": true
+        },
+        {
+            "displayLabel": "Created",
+            "name": "creationDate",
+            "oid": "1ee7fa7f-e25a-4a16-ba65-3a4aa6010430",
+            "type": "datetime",
+            "historyType": "timeCreated"
+        },
+        {
+            "displayLabel": "Last Updated",
+            "name": "lastUpdateDate",
+            "oid": "2b468331-9e4b-49cf-b3e3-864d5760ce4f",
+            "type": "datetime",
+            "historyType": "timeUpdated"
+        },
+        {
+            "displayLabel": "Created By",
+            "name": "createdBy",
+            "oid": "0c9f0426-04a0-4834-a3c4-20866ff7139c",
+            "type": "string",
+            "historyType": "createdBy"
+        },
+        {
+            "displayLabel": "Last Updated By",
+            "name": "lastUpdatedBy",
+            "oid": "75ab7628-5fe6-4f24-b1b6-67201b214b20",
+            "type": "string",
+            "historyType": "updatedBy"
+        },
+        {
+            "displayLabel": "Version Number",
+            "name": "abcsChangeNumber",
+            "oid": "2a6531cb-40ff-4cf2-a9ec-31177fe02052",
+            "type": "number",
+            "historyType": "versionNumber"
+        },
+        {
+            "displayLabel": "Department",
+            "name": "department",
+            "oid": "99aa8d80-5bb1-423f-a884-7db69fff836f",
+            "required": true,
+            "type": "string"
+        },
+        {
+            "displayLabel": "MaxSalary",
+            "name": "maxSalary",
+            "oid": "20793826-9cd5-4af6-b0e1-db3e69abab24",
+            "required": true,
+            "type": "number"
+        }
+    ],
+    "hidden": false,
+    "name": "Department",
+    "oid": "53ba0cda-91bc-4347-a530-1909687130ea"
+}

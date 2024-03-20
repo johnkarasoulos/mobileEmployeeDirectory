@@ -1,0 +1,20 @@
+{
+  "description": "",
+  "root": "openUrlEmail",
+  "actions": {
+    "openUrlEmail": {
+      "module": "vb/action/builtin/openUrlAction",
+      "parameters": {
+        "url": "[[ \"mailto:\"+$variables.email ]]"
+      }
+    }
+  },
+  "variables": {
+    "email": {
+      "type": "string",
+      "description": "",
+      "defaultValue": "{{ $value }}",
+      "input": "fromCaller"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "root": "switchNavigationItem",
+  "variables": {
+    "navigationItem": {
+      "type": "string",
+      "required": true,
+      "input": "fromCaller"
+    },
+    "employeesId": {
+      "type": "string",
+      "required": true,
+      "input": "fromCaller"
+    },
+    "rowData": {
+      "type": "any",
+      "required": false,
+      "input": "fromCaller"
+    }
+  },
+  "actions": {
+    "navigateToEdit": {
+      "module": "vb/action/builtin/navigateAction",
+      "parameters": {
+        "page": "edit",
+        "params": {
+          "objectId": "{{ $variables.employeesId }}"
+        }
+      }
+    },
+    "switchNavigationItem": {
+      "module": "vb/action/builtin/switchAction",
+      "parameters": {
+        "caseValue": "[[ $variables.navigationItem ]]",
+        "possibleValues": [
+          "edit",
+          "info"
+        ]
+      },
+      "outcomes": {
+        "edit": "navigateToEdit",
+        "info": "navigateToStatus"
+      }
+    },
+    "navigateToStatus": {
+      "module": "vb/action/builtin/navigateAction",
+      "@dt": {
+        "targetType": "flow"
+      },
+      "parameters": {
+        "target": "parent",
+        "flow": "status"
+      }
+    }
+  }
+}

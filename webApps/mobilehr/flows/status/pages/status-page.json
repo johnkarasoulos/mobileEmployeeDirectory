@@ -1,0 +1,87 @@
+{
+  "title": "",
+  "description": "",
+  "variables": {
+    "emppic": {
+      "type": "any"
+    },
+    "location": {
+      "type": "string"
+    }
+  },
+  "metadata": {},
+  "types": {},
+  "eventListeners": {
+    "buttonAction": {
+      "chains": [
+        {
+          "chainId": "ButtonActionChain"
+        }
+      ]
+    },
+    "buttonAction2": {
+      "chains": [
+        {
+          "chainId": "ButtonActionChain1"
+        }
+      ]
+    },
+    "cameraFilePickerSelect": {
+      "chains": [
+        {
+          "chainId": "CameraFilePickerSelectChain",
+          "parameters": {
+            "files": "[[ Array.prototype.slice.call($event.detail.files) ]]"
+          }
+        }
+      ]
+    },
+    "simpleCreateAndEditPageTemplateSpCancel": {
+      "chains": [
+        {
+          "chainId": "SimpleCreateAndEditPageTemplateSpCancelChain"
+        }
+      ]
+    },
+    "simpleCreateAndEditPageTemplateSpPrimaryAction": {
+      "chains": [
+        {
+          "chainId": "SimpleCreateAndEditPageTemplateSpPrimaryActionChain"
+        }
+      ]
+    },
+    "simpleCreateAndEditPageTemplateSpSecondaryAction": {
+      "chains": [
+        {
+          "chainId": "SimpleCreateAndEditPageTemplateSpSecondaryActionChain",
+          "parameters": {
+            "actionId": "{{$event.detail.value.id}}"
+          }
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-avatar": {
+        "path": "ojs/ojavatar"
+      },
+      "oj-button": {
+        "path": "ojs/ojbutton"
+      },
+      "oj-file-picker": {
+        "path": "ojs/ojfilepicker"
+      },
+      "oj-form-layout": {
+        "path": "ojs/ojformlayout"
+      },
+      "oj-input-text": {
+        "path": "ojs/ojinputtext"
+      },
+      "oj-sp-simple-create-edit": {
+        "path": "oj-sp/simple-create-edit/loader"
+      }
+
+    }
+  }
+}

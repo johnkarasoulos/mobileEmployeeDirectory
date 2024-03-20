@@ -1,0 +1,134 @@
+{
+    "displayLabel": "Employees",
+    "fields": [
+        {
+            "displayLabel": "Id",
+            "key": true,
+            "name": "id",
+            "oid": "a1e95cee-1b7b-4303-b98c-7c18f6696a45",
+            "required": true,
+            "type": "number",
+            "unique": true
+        },
+        {
+            "displayLabel": "Created",
+            "name": "creationDate",
+            "oid": "4b810bdf-9581-4ecd-9efe-ed885d3cba81",
+            "type": "datetime",
+            "historyType": "timeCreated"
+        },
+        {
+            "displayLabel": "Last Updated",
+            "name": "lastUpdateDate",
+            "oid": "5ba08807-7b46-4195-b481-cd395925c2e3",
+            "type": "datetime",
+            "historyType": "timeUpdated"
+        },
+        {
+            "displayLabel": "Created By",
+            "name": "createdBy",
+            "oid": "9ed8bb6f-a78d-45ed-af26-81a0bc89f1ca",
+            "type": "string",
+            "historyType": "createdBy"
+        },
+        {
+            "displayLabel": "Last Updated By",
+            "name": "lastUpdatedBy",
+            "oid": "12406f6d-bb9a-4e59-9f04-ed3416c5c6d1",
+            "type": "string",
+            "historyType": "updatedBy"
+        },
+        {
+            "displayLabel": "Version Number",
+            "name": "abcsChangeNumber",
+            "oid": "912e52b2-9f3c-4814-9858-2b3f2309f0d1",
+            "type": "number",
+            "historyType": "versionNumber"
+        },
+        {
+            "displayLabel": "Name",
+            "name": "name",
+            "oid": "d98cf6fd-11b7-42a1-bd50-84f52ca076ac",
+            "required": true,
+            "type": "string"
+        },
+        {
+            "displayLabel": "Email",
+            "name": "email",
+            "oid": "df185bad-5427-415d-ab7e-d206da820639",
+            "required": true,
+            "type": "string"
+        },
+        {
+            "displayLabel": "Country",
+            "name": "country",
+            "oid": "912b6858-251a-4bf8-ab3d-8bb1e25adc8b",
+            "required": true,
+            "type": "string"
+        },
+        {
+            "displayLabel": "Salary",
+            "name": "salary",
+            "oid": "85aabebd-b892-4039-a8b9-f504bf78f683",
+            "required": true,
+            "type": "number"
+        },
+        {
+            "displayLabel": "Picture",
+            "name": "picture",
+            "oid": "0455b779-d4a8-4ce7-9d9e-15133518c334",
+            "required": true,
+            "type": "string"
+        }
+    ],
+    "hidden": false,
+    "name": "Employees",
+    "oid": "62514063-e918-40d9-9101-37e3d16ba406",
+    "security": {
+        "type": "local",
+        "acl": [
+            {
+                "roleId": "approle.anonymous.user",
+                "privileges": [
+                    {
+                        "name": "view",
+                        "value": true
+                    },
+                    {
+                        "name": "create",
+                        "value": false
+                    },
+                    {
+                        "name": "update",
+                        "value": true
+                    },
+                    {
+                        "name": "delete",
+                        "value": false
+                    }
+                ]
+            },
+            {
+                "roleId": "approle.authenticated.user",
+                "privileges": [
+                    {
+                        "name": "view",
+                        "value": true
+                    },
+                    {
+                        "name": "create",
+                        "value": true
+                    },
+                    {
+                        "name": "update",
+                        "value": true
+                    },
+                    {
+                        "name": "delete",
+                        "value": true
+                    }
+                ]
+            }
+        ]
+    }
+}

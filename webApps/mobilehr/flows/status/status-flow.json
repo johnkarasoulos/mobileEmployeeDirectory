@@ -1,0 +1,8 @@
+{
+  "id": "status",
+  "description": "Flow main",
+  "defaultPage": "status",
+  "services": {},
+  "types": {},
+  "variables": {}
+}

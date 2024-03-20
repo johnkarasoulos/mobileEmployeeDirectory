@@ -1,0 +1,92 @@
+{
+  "root": "setPendingFormStatus",
+  "description": "Loads Employees record data",
+  "variables": {
+    "fetchedFields": {
+      "type": "any[]",
+      "input": "fromCaller"
+    },
+    "employeesId": {
+      "type": "string",
+      "input": "fromCaller"
+    }
+  },
+  "actions": {
+    "setPendingFormStatus": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "parameters": {
+        "$page.variables.employeesEditFormLoadingStatus": {
+          "source": "pending"
+        }
+      },
+      "outcomes": {
+        "success": "resetEmployeesData"
+      },
+      "description": "Updates form status to Pending.",
+      "label": "Set Form status to Pending"
+    },
+    "resetEmployeesData": {
+      "module": "vb/action/builtin/resetVariablesAction",
+      "parameters": {
+        "variables": [
+          "$page.variables.employees",
+          "$page.variables.fetchedEmployees"
+        ]
+      },
+      "outcomes": {
+        "success": "testValidInput"
+      },
+      "description": "Clears Employees data the variable holds",
+      "label": "Reset Employees variable"
+    },
+    "testValidInput": {
+      "module": "vb/action/builtin/ifAction",
+      "parameters": {
+        "condition": "[[ $variables.fetchedFields && $variables.fetchedFields.length && $variables.employeesId !== undefined ]]"
+      },
+      "outcomes": {
+        "true": "loadEmployees"
+      },
+      "description": "Tests the REST call can be initiated",
+      "label": "Test valid input"
+    },
+    "loadEmployees": {
+      "module": "vb/action/builtin/restAction",
+      "parameters": {
+        "endpoint": "businessObjects/get_Employees",
+        "responseFields": "[[ $variables.fetchedFields ]]",
+        "uriParams": {
+          "Employees_Id": "[[ $variables.employeesId ]]"
+        }
+      },
+      "outcomes": {
+        "failure": "fireErrorNotification",
+        "success": "callAssignEmployeesDataChain"
+      },
+      "description": "Initiates REST call loading Employees data",
+      "label": "Load Employees record"
+    },
+    "fireErrorNotification": {
+      "module": "vb/action/builtin/fireNotificationEventAction",
+      "parameters": {
+        "summary": "Could not load data",
+        "message": "[[ 'Could not load data: status ' + $chain.results.loadEmployees.status ]]",
+        "type": "error",
+        "displayMode": "persist"
+      },
+      "description": "Shows an error message informing about data load failure",
+      "label": "Show error message"
+    },
+    "callAssignEmployeesDataChain": {
+      "module": "vb/action/builtin/callChainAction",
+      "parameters": {
+        "id": "assignFetchedEmployeesDataChain",
+        "params": {
+          "restCallResult": "[[ $chain.results.loadEmployees ]]"
+        }
+      },
+      "description": "Calls action chain assigning loaded Employees data",
+      "label": "Assign Employees Data"
+    }
+  }
+}

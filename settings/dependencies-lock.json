@@ -1,0 +1,38 @@
+{
+    "component-dependencies": {
+        "oj-sp": {
+            "version": "2207.0.0",
+            "components": {
+                "emo-button": "2207.0.0",
+                "select-single-item-template": "2207.0.0",
+                "common-util": "2207.0.0",
+                "common-strings": "2207.0.0",
+                "header-welcome-banner": "2207.0.0",
+                "welcome-page": "2207.0.0",
+                "fa-css": "2207.0.0",
+                "general-drawer-template": "2207.0.0",
+                "common": "2207.0.0",
+                "simple-create-edit-pattern": "2207.0.0",
+                "simple-create-edit": "2207.0.0",
+                "header-create-edit": "2207.0.0",
+                "css-additions": "2207.0.0",
+                "timestamp": "2207.0.0"
+
+            }
+        },
+        "oj-dynamic": {
+            "version": "12.1.4",
+            "components": {
+                "container": "12.1.4",
+                "shared": "12.1.4",
+                "form": "12.1.4",
+                "bind-field": "12.1.4",
+                "providers": "12.1.4",
+                "table": "12.1.4",
+                "utils": "12.1.4",
+                "bind-section": "12.1.4"
+            }
+        },
+        "oj-sp-ref-color-thief": "2.3.2"
+    }
+}

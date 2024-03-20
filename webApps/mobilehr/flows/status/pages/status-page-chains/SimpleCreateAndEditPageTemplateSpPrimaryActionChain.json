@@ -1,0 +1,17 @@
+{
+  "description": "",
+  "root": "navigateToFirst",
+  "actions": {
+    "navigateToFirst": {
+      "module": "vb/action/builtin/navigateAction",
+      "@dt": {
+        "targetType": "flow"
+      },
+      "parameters": {
+        "target": "parent",
+        "flow": "first"
+      }
+    }
+  },
+  "variables": {}
+}

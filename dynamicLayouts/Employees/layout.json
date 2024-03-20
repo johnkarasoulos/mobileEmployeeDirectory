@@ -1,0 +1,84 @@
+{
+  "layoutTypes": {
+    "businessObjects": {
+      "kind": "operationRef",
+      "serviceId": "businessObjects",
+      "operations": [
+        "update_Employees"
+      ]
+    }
+  },
+  "layouts": {
+    "isDefault": {
+      "description": "Default Rule",
+      "type": "businessObjects",
+      "expression": "default"
+    },
+    "editEmp": {
+      "type": "businessObjects",
+      "layoutType": "form",
+      "label": "EditEmp",
+      "rules": [
+        "isDefault"
+      ],
+      "layouts": {
+        "default": {
+          "layoutType": "form",
+          "layout": {
+            "displayProperties": [
+              "name",
+              "country",
+              "email",
+              "salary",
+              "picture"
+            ]
+          },
+          "usedIn": [
+            "isDefault"
+          ]
+        }
+      },
+      "fieldTemplateMap": {
+        "email": "email",
+        "salary": "salgauge"
+      }
+    }
+  },
+  "templates": {
+    "email": {
+      "title": "email",
+      "description": "",
+      "extensible": "byReference",
+      "@dt": {
+        "type": "field"
+      },
+      "dependencies": [
+        "ojs/ojinputtext"
+      ]
+    },
+    "salgauge": {
+      "title": "Salgauge",
+      "description": "",
+      "extensible": "byReference",
+      "@dt": {
+        "type": "field"
+      },
+      "dependencies": [
+        "ojs/ojgauge",
+        "ojs/ojinputtext"
+      ]
+    }
+  },
+  "eventListeners": {
+    "iconClick": {
+      "chains": [
+        {
+          "chainId": "IconClickChain",
+          "parameters": {
+            "email": "{{ $value }}"
+          }
+        }
+      ]
+    }
+  }
+}

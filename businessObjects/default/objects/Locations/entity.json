@@ -1,0 +1,66 @@
+{
+    "displayLabel": "Locations",
+    "fields": [
+        {
+            "displayLabel": "Id",
+            "key": true,
+            "name": "id",
+            "oid": "b3699d91-bc23-4b1d-a8bc-93af0d5232c7",
+            "required": true,
+            "type": "number",
+            "unique": true
+        },
+        {
+            "displayLabel": "Created",
+            "name": "creationDate",
+            "oid": "6b6059fc-904c-47ee-b7b7-35c716239fa3",
+            "type": "datetime",
+            "historyType": "timeCreated"
+        },
+        {
+            "displayLabel": "Last Updated",
+            "name": "lastUpdateDate",
+            "oid": "4104c420-6b13-4d1d-8dd0-7c78fdcdbd81",
+            "type": "datetime",
+            "historyType": "timeUpdated"
+        },
+        {
+            "displayLabel": "Created By",
+            "name": "createdBy",
+            "oid": "075f5bac-c918-40d1-8c27-4babc3bf7f58",
+            "type": "string",
+            "historyType": "createdBy"
+        },
+        {
+            "displayLabel": "Last Updated By",
+            "name": "lastUpdatedBy",
+            "oid": "7c46c6ed-d8da-44ea-a9c2-ae3e950b8b01",
+            "type": "string",
+            "historyType": "updatedBy"
+        },
+        {
+            "displayLabel": "Version Number",
+            "name": "abcsChangeNumber",
+            "oid": "5b56d63f-b9ce-4e60-be94-b3f1c0add097",
+            "type": "number",
+            "historyType": "versionNumber"
+        },
+        {
+            "displayLabel": "Country",
+            "name": "country",
+            "oid": "7322e539-bab3-4c55-a04d-03f2cb32d0b8",
+            "required": true,
+            "type": "string"
+        },
+        {
+            "displayLabel": "City",
+            "name": "city",
+            "oid": "1d4ff7a8-427b-474c-b193-fe49f1e8b2c1",
+            "required": true,
+            "type": "string"
+        }
+    ],
+    "hidden": false,
+    "name": "Locations",
+    "oid": "ca383162-8a7b-45a2-a914-d2fcc31a77f8"
+}

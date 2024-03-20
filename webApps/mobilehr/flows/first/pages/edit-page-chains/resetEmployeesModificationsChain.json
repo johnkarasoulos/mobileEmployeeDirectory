@@ -1,0 +1,17 @@
+{
+  "root": "assignUpdateEmployeesData",
+  "description": "Resets edited record to loaded data.",
+  "actions": {
+    "assignUpdateEmployeesData": {
+      "module": "vb/action/builtin/assignVariablesAction",
+      "parameters": {
+        "$page.variables.employees": {
+          "source": "[[ $page.variables.fetchedEmployees ]]",
+          "auto": "always"
+        }
+      },
+      "description": "Assigns data loaded by the REST call to the Employees editable record variable",
+      "label": "Assign editable Employees data"
+    }
+  }
+}

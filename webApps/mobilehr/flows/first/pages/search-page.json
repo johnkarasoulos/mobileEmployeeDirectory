@@ -1,0 +1,132 @@
+{
+  "title": "",
+  "description": "",
+  "variables": {
+    "employeesListSDP": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Employees",
+        "keyAttributes": "@value",
+        "itemsPath": "items",
+        "responseType": "getallEmployeesResponse",
+        "transformsContext": {
+          "vb-textFilterAttributes": [
+            "name"
+          ]
+        }
+      }
+    },
+    "employeesListSDP2": {
+      "type": "vb/ServiceDataProvider",
+      "defaultValue": {
+        "endpoint": "businessObjects/getall_Employees",
+        "keyAttributes": "id",
+        "itemsPath": "items",
+        "responseType": "getallEmployeesResponse2",
+        "filterCriterion": {
+          "op": "$co",
+          "attribute": "name",
+          "value": "{{ $variables.searchString }}"
+        }
+      }
+    },
+    "oj_list_view_283278035_1SelectedId": {
+      "type": "string",
+      "defaultValue": ""
+    },
+    "searchString": {
+      "type": "string"
+    }
+
+  },
+  "metadata": {},
+  "types": {
+    "@decorators.getallEmployeesResponse": {
+      "endpoint": "getall_Employees",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "@decorators.getallEmployeesResponse2": {
+      "endpoint": "getall_Employees",
+      "service": "businessObjects",
+      "path": "response"
+    },
+    "getallEmployeesResponse": {
+      "items": [
+        {
+          "name": "string"
+        }
+      ]
+    },
+    "getallEmployeesResponse2": {
+      "items": [
+        {
+          "country": "string",
+          "email": "string",
+          "id": "number",
+          "name": "string",
+          "picture": "string"
+        }
+      ]
+    }
+  },
+  "eventListeners": {
+    "editEmployeesButtonClicked": {
+      "chains": [
+        {
+          "chainId": "navigateToEditEmployeesChain",
+          "parameters": {
+            "employeesId": "[[ $variables.oj_list_view_283278035_1SelectedId ]]"
+          }
+        }
+      ]
+    },
+    "oj_list_view_283278035_1SelectionChanged": {
+      "chains": [
+        {
+          "chainId": "oj_list_view_283278035_1ChangeSelectionChain",
+          "parameters": {
+            "employeesId": "[[ $event.detail.value.key || '' ]]"
+          }
+        }
+      ]
+    },
+    "ojSwipeActionsPerformed": {
+      "chains": [
+        {
+          "chainId": "performSwipeOperationChain",
+          "parameters": {
+            "navigationItem": "[[$event.target.value]]",
+            "employeesId": "[[$current.key]]",
+            "rowData": "[[$current.data]]"
+          }
+        }
+      ]
+    }
+  },
+  "imports": {
+    "components": {
+      "oj-avatar": {
+        "path": "ojs/ojavatar"
+      },
+      "oj-input-search": {
+        "path": "ojs/ojinputsearch"
+      },
+      "oj-list-item-layout": {
+        "path": "ojs/ojlistitemlayout"
+      },
+      "oj-list-view": {
+        "path": "ojs/ojlistview"
+      },
+      "oj-option": {
+        "path": "ojs/ojoption"
+      },
+      "oj-sp-welcome-page": {
+        "path": "oj-sp/welcome-page/loader"
+      },
+      "oj-swipe-actions": {
+        "path": "ojs/ojswipeactions"
+      }
+    }
+  }
+}

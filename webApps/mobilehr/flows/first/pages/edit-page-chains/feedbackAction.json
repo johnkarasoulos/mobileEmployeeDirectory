@@ -1,0 +1,20 @@
+{
+  "description": "feedback action is triggered",
+  "variables": {
+    "detail": {
+      "type": "any",
+      "input": "fromCaller",
+      "required": true
+    }
+  },
+  "root": "navigateToPage",
+  "actions": {
+    "navigateToPage": {
+      "module": "vb/action/builtin/navigateAction",
+      "parameters": {
+        "page": "/",
+        "params": {}
+      }
+    }
+  }
+}
